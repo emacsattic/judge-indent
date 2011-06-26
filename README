@@ -1,0 +1,49 @@
+judge-indent.el
+
+# 概要
+judge-indent.el は以下の 8 (厳密には 7) パターンの
+インデント幅とタブ幅を自動判定します。
+
+   \  indent
+    \  2 4 8
+ tab \------
+   4 | o c -
+   8 | o o c <- (8, 8) と (4, 4) を見分けることはできません。
+ nil | o o o
+
+# 使い方
+以下の 3 行を emacs の設定ファイルに追加してください。
+  (require 'judge-indent)
+  (global-judge-indent-mode t)
+  (setq judge-indent-major-modes '(c-mode python-mode sh-mode))
+  
+# カスタマイズ
+デフォルトのインデント幅 (2 か 4 か 8) を設定する。
+  (setq judge-indent-default-indent-width 4)
+これのデフォルト値は `c-basic-offset' もしくは 4 です。
+
+デフォルトのタブ幅 (4 か 8) を設定する。
+  (setq judge-indent-default-tab-width 8)
+これのデフォルト値は `tab-width' もしくは 8 です。
+
+インデントがあまり深くないときに
+タブを優先するかどうかのフラグを設定する。
+  (setq judge-indent-prefer-tabs-mode nil)
+これのデフォルト値は `indent-tabs-width' もしくは nil です。
+
+インデント幅とタブ幅を判定するときに用いる相対許容誤差 [%] を設定する。
+  (setq judge-indent-relative-tolerance 5)
+これのデフォルト値は 5 % です。
+
+大きいサイズのファイルに対して検索のリミットを設定する。
+  (setq judge-indent-search-limit 30000)
+これのデフォルト値は 30000 文字 (約 1000 行と等価) です。
+
+# 関数
+* judge-indent-mode
+* judge-indent-buffer
+* judge-indent-set-indent-width{2, 4, 8}
+* judge-indent-disable-tab
+* judge-indent-set-tab-width{4, 8}
+* judge-indent-set-indent-width{2, 4, 8}-disable-tab
+* judge-indent-set-indent-width{2, 4, 8}-tab-width{2, 8}
