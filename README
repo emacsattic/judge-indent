@@ -47,3 +47,7 @@ judge-indent.el は以下の 8 (厳密には 7) パターンの
 * judge-indent-set-tab-width{4, 8}
 * judge-indent-set-indent-width{2, 4, 8}-disable-tab
 * judge-indent-set-indent-width{2, 4, 8}-tab-width{2, 8}
+
+# バージョン
+* 1.0.0 on 26 June 2011
+ファーストコミット。
