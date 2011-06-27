@@ -86,21 +86,21 @@
 
 (defcustom judge-indent-default-indent-width
   (if (default-boundp 'c-basic-offset)
-      (default-value 'c-basic-offset) 4)
+      (default-value  'c-basic-offset) 4)
   "Default indent width (2, 4 or 8)"
   :type  'number
   :group 'judge-indent)
 
 (defcustom judge-indent-default-tab-width
   (if (default-boundp 'tab-width)
-      (default-value 'tab-width) 8)
+      (default-value  'tab-width) 8)
   "Default tab width (4 or 8)"
   :type  'number
   :group 'judge-indent)
 
 (defcustom judge-indent-prefer-tabs-mode
   (if (default-boundp 'indent-tabs-mode)
-      (default-value 'indent-tabs-mode) nil)
+      (default-value  'indent-tabs-mode) nil)
   "Prefer tab or not when indent is not so deep"
   :type  'boolean
   :group 'judge-indent)
@@ -116,8 +116,8 @@
   :group 'judge-indent)
 
 ;; set indent width
-(defun judge-indent-set-indent-width (indent)
-  "Set indent width"
+(defun judge-indent-set-indent-width-without-message (indent)
+  "Set indent width without message"
   (interactive)
   (setq c-basic-offset           indent)
   (setq indent-level             indent)
@@ -137,27 +137,34 @@
   (setq js-indent-level          indent)
   (setq sh-basic-offset          indent))
 
+(defun judge-indent-set-indent-width (indent)
+  "Set indent width"
+  (interactive)
+  (message (concat "Set indent width to " (number-to-string indent) "..."))
+  (setcar (cdr (assq 'judge-indent-mode minor-mode-alist))
+          (concat " JI:" (number-to-string indent)
+                  "[" (if (= tab-width 0) "-"
+                        (number-to-string tab-width)) "]"))
+  (judge-indent-set-indent-width-without-message indent))
+
 (defun judge-indent-set-indent-width2 ()
   "Set indent width to 2"
   (interactive)
-  (message "Set indent width to 2...")
   (judge-indent-set-indent-width 2))
 
 (defun judge-indent-set-indent-width4 ()
   "Set indent width to 4"
   (interactive)
-  (message "Set indent width to 4...")
   (judge-indent-set-indent-width 4))
 
 (defun judge-indent-set-indent-width8 ()
   "Set indent width to 8"
   (interactive)
-  (message "Set indent width to 8...")
   (judge-indent-set-indent-width 8))
 
 ;; set tab width
-(defun judge-indent-set-tab-width (tab)
-  "Set tab width"
+(defun judge-indent-set-tab-width-without-message (tab)
+  "Set tab width without message"
   (interactive)
   (if (= tab 0)
       (setq indent-tabs-mode nil)
@@ -169,38 +176,47 @@
               (* tab  6) (* tab  7) (* tab  8) (* tab  9) (* tab 10)
               (* tab 11) (* tab 12) (* tab 13) (* tab 14) (* tab 15))))))
 
+(defun judge-indent-set-tab-width (tab)
+  "Set tab width"
+  (interactive)
+  (message (concat (if (= tab 0) "Disable tab"
+                     (concat "Set tab width to " (number-to-string tab)))
+                   "..."))
+  (setcar (cdr (assq 'judge-indent-mode minor-mode-alist))
+          (concat " JI:" (number-to-string c-basic-offset)
+                  "[" (if (= tab 0) "-"
+                        (number-to-string tab)) "]"))
+  (judge-indent-set-tab-width-without-message tab))
+
 (defun judge-indent-disable-tab ()
   "Disable tab"
   (interactive)
-  (message "Disable tab...")
   (judge-indent-set-tab-width 0))
 
 (defun judge-indent-set-tab-width4 ()
   "Set tab width to 4"
   (interactive)
-  (message "Set tab width to 4...")
   (judge-indent-set-tab-width 4))
 
 (defun judge-indent-set-tab-width8 ()
   "Set tab width to 8"
   (interactive)
-  (message "Set tab width to 8...")
   (judge-indent-set-tab-width 8))
 
 ;; set indent and tab widths
 (defun judge-indent-set-indent-tab-widths (indent tab)
   "Set indent and tab widths"
   (interactive)
-  (message
-   (concat "Set indent width to " (number-to-string indent) " and "
-           (if (= tab 0) "disable tab"
-             (concat "tab width to " (number-to-string tab)))
-           "..."))
+  (message (concat "Set indent width to " (number-to-string indent)
+                   (if (= tab 0) " and disable tab"
+                     (concat " and tab width to " (number-to-string tab)))
+                   "..."))
   (setcar (cdr (assq 'judge-indent-mode minor-mode-alist))
           (concat " JI:" (number-to-string indent)
-                  "[" (if (= tab 0) "-" (number-to-string tab)) "]"))
-  (judge-indent-set-indent-width indent)
-  (judge-indent-set-tab-width    tab))
+                  "[" (if (= tab 0) "-"
+                        (number-to-string tab)) "]"))
+  (judge-indent-set-indent-width-without-message indent)
+  (judge-indent-set-tab-width-without-message    tab))
 
 (defun judge-indent-set-indent-width2-disable-tab ()
   "Set indent width to 2 and disable tab"
