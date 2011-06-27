@@ -16,7 +16,7 @@ judge-indent.el は以下の 8 (厳密には 7) パターンの
   (require 'judge-indent)
   (global-judge-indent-mode t)
   (setq judge-indent-major-modes '(c-mode python-mode sh-mode))
-  
+
 # カスタマイズ
 デフォルトのインデント幅 (2 か 4 か 8) を設定する。
   (setq judge-indent-default-indent-width 4)
@@ -26,8 +26,7 @@ judge-indent.el は以下の 8 (厳密には 7) パターンの
   (setq judge-indent-default-tab-width 8)
 これのデフォルト値は `tab-width' もしくは 8 です。
 
-インデントがあまり深くないときに
-タブを優先するかどうかのフラグを設定する。
+インデントがあまり深くないときにタブを好むかどうかのフラグを設定する。
   (setq judge-indent-prefer-tabs-mode nil)
 これのデフォルト値は `indent-tabs-width' もしくは nil です。
 
@@ -35,9 +34,9 @@ judge-indent.el は以下の 8 (厳密には 7) パターンの
   (setq judge-indent-relative-tolerance 5)
 これのデフォルト値は 5 % です。
 
-大きいサイズのファイルに対して検索のリミットを設定する。
+大きいサイズのファイルに対して検索リミットを設定する。
   (setq judge-indent-search-limit 30000)
-これのデフォルト値は 30000 文字 (約 1000 行と等価) です。
+これのデフォルト値は 30000 文字 (＝約 1000 行) です。
 
 # 関数
 * judge-indent-mode
@@ -51,3 +50,6 @@ judge-indent.el は以下の 8 (厳密には 7) パターンの
 # バージョン
 * 1.0.0 on 26 June 2011
 ファーストコミット。
+
+# 既知の問題
+* 判定が行われる度に全バッファのモードラインの数字が変わる (新しい数字が全バッファに再設定されるわけではない)。
