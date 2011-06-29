@@ -2,13 +2,13 @@ judge-indent.el
 
 # 概要
 judge-indent.el は以下の 8 (厳密には 7) パターンの
-インデント幅とタブ幅を自動判定します。
+インデント幅およびタブ幅を自動判定します。
 
    \  indent
     \  2 4 8
  tab \------
    4 | o c -
-   8 | o o c <- (8, 8) と (4, 4) を見分けることはできません。
+   8 | o o c <- (8, 8) と (4, 4) は区別不能。
  nil | o o o
 
 # 使い方
@@ -40,12 +40,29 @@ judge-indent.el は以下の 8 (厳密には 7) パターンの
 
 # 関数
 * judge-indent-mode
+マイナーモードをオン／オフにする。
+
 * judge-indent-buffer
-* judge-indent-set-indent-width{2, 4, 8}
-* judge-indent-disable-tab
-* judge-indent-set-tab-width{4, 8}
+* judge-indent-region
+バッファ／リージョンからインデント幅およびタブ幅を判定する。
+
+* judge-indent-set-indent-tab-widths
 * judge-indent-set-indent-width{2, 4, 8}-disable-tab
 * judge-indent-set-indent-width{2, 4, 8}-tab-width{2, 8}
+インデント幅およびタブ幅を手動で設定する。
+
+* judge-indent-set-indent-width
+* judge-indent-set-indent-width{2, 4, 8}
+インデント幅を手動で設定する。
+
+* judge-indent-set-tab-width
+* judge-indent-disable-tab
+* judge-indent-set-tab-width{4, 8}
+タブ幅を手動で設定する。
+
+* judge-indent-message-indent-counts-buffer
+* judge-indent-message-indent-counts-region
+バッファ／リージョン内のインデントをカウントして表示する。
 
 # バージョン
 * 1.0.0 on 26 June 2011
