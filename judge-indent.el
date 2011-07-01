@@ -4,7 +4,7 @@
 
 ;; Author:   yascentur <screenname at gmail dot com>
 ;; Keywords: indent tab
-;; Version:  1.1.0b
+;; Version:  1.1.0
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -21,14 +21,15 @@
 
 ;;; Commentary:
 
-;; The judge-indent.el judges indent and tab widths
-;; into following 8 (strictly 7) patterns.
+;; The `judge-indent-mode' judges, soon after finding file,
+;; indent and tab widths from following 8 (strictly 7) patterns.
+;; Then, you can add your code without breaking existing indent style.
 ;;
 ;;   \  indent
 ;;    \  2 4 8
 ;; tab \------
 ;;   4 | o c -
-;;   8 | o o c <- It can not distinguish between (8, 8) and (4, 4)
+;;   8 | o o c <- It can not distinguish when indent width equals to tab width.
 ;; nil | o o o
 
 ;;; Usage:
@@ -42,23 +43,23 @@
 
 ;; Set default indent width (2, 4 or 8)
 ;;   (setq judge-indent-default-indent-width 4)
-;; The default value is `c-basic-offset' or 4
+;; Default: default value of `c-basic-offset' or 4
 ;;
 ;; Set default tab width (4 or 8)
 ;;   (setq judge-indent-default-tab-width 8)
-;; The default value is `tab-width' or 8
+;; Default: default value of `tab-width' or 8
 ;;
 ;; Set flag of preferring tab or not when indent is not so deep
 ;;   (setq judge-indent-prefer-tabs-mode nil)
-;; The default value is `indent-tabs-mode' or nil
+;; Default: default value of `indent-tabs-mode' or nil
 ;;
 ;; Set relative tolerance [%] for judging indent and tab widths
-;;   (setq judge-indent-relative-tolerance 5)
-;; The default value is 5 %
+;;   (setq judge-indent-relative-tolerance 3)
+;; Default: 5 %
 ;;
 ;; Set search limit for large size files
-;;   (setq judge-indent-search-limit 30000)
-;; The default value is 30000 chars (equal to ca. 1000 lines)
+;;   (setq judge-indent-search-limit 60000)
+;; Default: 30000 chars (equal to ca. 1000 lines)
 
 ;;; Functions:
 
@@ -117,7 +118,7 @@
   :group 'judge-indent)
 
 (defcustom judge-indent-search-limit 30000
-  "Search limit for large size files (30000 chars equal to ca. 1000 lines)"
+  "Search limit for large size files"
   :type  'number
   :group 'judge-indent)
 
@@ -150,43 +151,43 @@
   "Set indent width without message"
   (setq judge-indent-indent-width indent)
   (when (boundp 'c-basic-offset)
-    (setq c-basic-offset            indent))
+    (setq c-basic-offset                    indent))
   (when (boundp 'indent-level)
-    (setq indent-level              indent))
+    (setq indent-level                      indent))
   (when (boundp 'standard-indent)
-    (setq standard-indent           indent))
+    (setq standard-indent                   indent))
   (when (boundp 'c-indent-level)
-    (setq c-indent-level            indent))
+    (setq c-indent-level                    indent))
   (when (boundp 'python-indent)
-    (setq python-indent             indent))
+    (setq python-indent                     indent))
   (when (boundp 'perl-indent-level)
-    (setq perl-indent-level         indent))
+    (setq perl-indent-level                 indent))
   (when (boundp 'cperl-indent-level)
-    (setq cperl-indent-level        indent))
+    (setq cperl-indent-level                indent))
   (when (boundp 'ruby-indent-level)
-    (setq ruby-indent-level         indent))
+    (setq ruby-indent-level                 indent))
   (when (boundp 'html-basic-offset)
-    (setq html-basic-offset         indent))
+    (setq html-basic-offset                 indent))
   (when (boundp 'sgml-basic-offset)
-    (setq sgml-basic-offset         indent))
+    (setq sgml-basic-offset                 indent))
   (when (boundp 'html-helper-basic-offset)
-    (setq html-helper-basic-offset  indent))
+    (setq html-helper-basic-offset          indent))
   (when (boundp 'yahtml-environment-indent)
-    (setq yahtml-environment-indent indent))
+    (setq yahtml-environment-indent         indent))
   (when (boundp 'nxml-child-indent)
-    (setq nxml-child-indent         indent))
+    (setq nxml-child-indent                 indent))
   (when (boundp 'css-indent-level)
-    (setq css-indent-level          indent))
+    (setq css-indent-level                  indent))
   (when (boundp 'cssm-indent-level)
-    (setq cssm-indent-level         indent))
+    (setq cssm-indent-level                 indent))
   (when (boundp 'javascript-indent-level)
-    (setq javascript-indent-level   indent))
+    (setq javascript-indent-level           indent))
   (when (boundp 'js-indent-level)
-    (setq js-indent-level           indent))
+    (setq js-indent-level                   indent))
   (when (boundp 'js2-basic-offset)
-    (setq js2-basic-offset          indent))
+    (setq js2-basic-offset                  indent))
   (when (boundp 'sh-basic-offset)
-    (setq sh-basic-offset           indent)))
+    (setq sh-basic-offset                   indent)))
 
 (defun judge-indent-set-indent-width (indent)
   "Set indent width"

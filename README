@@ -1,14 +1,17 @@
 judge-indent.el
 
 # 概要
-judge-indent.el は以下の 8 (厳密には 7) パターンの
-インデント幅およびタブ幅を自動判定します。
+`judge-indent-mode' は、ファイルを開いた瞬間、
+以下の 8 (厳密には 7) パターンの中から
+インデント幅およびタブ幅を自動的に判定します。
+既存のインデントスタイルを乱さずに、
+他人・チームのコードに手を入れることが可能となります。
 
    \  indent
     \  2 4 8
  tab \------
    4 | o c -
-   8 | o o c
+   8 | o o c <- インデント幅＝タブ幅のときはそれ以上の判定を行わない。
  nil | o o o
 
 # 使い方
@@ -20,23 +23,23 @@ judge-indent.el は以下の 8 (厳密には 7) パターンの
 # カスタマイズ
 デフォルトのインデント幅 (2 か 4 か 8) を設定する。
   (setq judge-indent-default-indent-width 4)
-これのデフォルト値は `c-basic-offset' もしくは 4 です。
+デフォルト: `c-basic-offset' のデフォルト値、もしくは 4
 
 デフォルトのタブ幅 (4 か 8) を設定する。
   (setq judge-indent-default-tab-width 8)
-これのデフォルト値は `tab-width' もしくは 8 です。
+デフォルト: `tab-width' のデフォルト値、もしくは 8
 
 インデントがあまり深くないときにタブを好むかどうかのフラグを設定する。
   (setq judge-indent-prefer-tabs-mode nil)
-これのデフォルト値は `indent-tabs-width' もしくは nil です。
+デフォルト: `indent-tabs-width' のデフォルト値、もしくは nil
 
 インデント幅とタブ幅を判定するときに用いる相対許容誤差 [%] を設定する。
-  (setq judge-indent-relative-tolerance 5)
-これのデフォルト値は 5 % です。
+  (setq judge-indent-relative-tolerance 3)
+デフォルト: 5 %
 
 大きいサイズのファイルに対して検索リミットを設定する。
-  (setq judge-indent-search-limit 30000)
-これのデフォルト値は 30000 文字 (＝約 1000 行) です。
+  (setq judge-indent-search-limit 60000)
+デフォルト: 30000 文字 (＝約 1000 行)
 
 # 関数
 * judge-indent-mode
@@ -65,6 +68,9 @@ judge-indent.el は以下の 8 (厳密には 7) パターンの
 バッファ／リージョン内のインデントをカウントして表示する。
 
 # バージョン
+* 1.1.0 on 2 July 2011
+精度向上。リージョンに関する関数。リファクタリング。
+
 * 1.0.0 on 26 June 2011
 ファーストコミット。
 
