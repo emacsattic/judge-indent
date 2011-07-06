@@ -4,7 +4,7 @@
 
 ;; Author:   yascentur <screenname at gmail dot com>
 ;; Keywords: indent tab
-;; Version:  1.1.0
+;; Version:  1.1.1b
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -25,41 +25,41 @@
 ;; indent and tab widths from following 8 (strictly 7) patterns.
 ;; Then, you can add your code without breaking existing indent style.
 ;;
-;;   \  indent
-;;    \  2 4 8
-;; tab \------
-;;   4 | o c -
-;;   8 | o o c <- It can not distinguish when indent width equals to tab width.
-;; nil | o o o
+;;       \  indent
+;;        \  2 4 8
+;;     tab \------
+;;       4 | o c -
+;;       8 | o o c <- It can not distinguish when indent width equals to tab width.
+;;     nil | o o o
 
 ;;; Usage:
 
-;; Add following 3 lines into your emacs config file
-;;   (require 'judge-indent)
-;;   (global-judge-indent-mode t)
-;;   (setq judge-indent-major-modes '(c-mode python-mode sh-mode))
+;; Add following 3 lines into your emacs config file.
+;;     (require 'judge-indent)
+;;     (global-judge-indent-mode t)
+;;     (setq judge-indent-major-modes '(c-mode python-mode sh-mode))
 
 ;;; Customization:
 
-;; Set default indent width (2, 4 or 8)
-;;   (setq judge-indent-default-indent-width 4)
-;; Default: default value of `c-basic-offset' or 4
+;; Set default indent width (2, 4 or 8).
+;; Default: default value of `c-basic-offset' or 4.
+;;     (setq judge-indent-default-indent-width 2)
 ;;
-;; Set default tab width (4 or 8)
-;;   (setq judge-indent-default-tab-width 8)
-;; Default: default value of `tab-width' or 8
+;; Set default tab width (4 or 8).
+;; Default: default value of `tab-width' or 8.
+;;     (setq judge-indent-default-tab-width 4)
 ;;
-;; Set flag of preferring tab or not when indent is not so deep
-;;   (setq judge-indent-prefer-tabs-mode nil)
-;; Default: default value of `indent-tabs-mode' or nil
+;; Set flag of preferring tab or not when indent is not so deep.
+;; Default: default value of `indent-tabs-mode' or nil.
+;;     (setq judge-indent-prefer-tabs-mode t)
 ;;
-;; Set relative tolerance [%] for judging indent and tab widths
-;;   (setq judge-indent-relative-tolerance 3)
-;; Default: 5 %
+;; Set relative tolerance [%] for judging indent and tab widths.
+;; Default: 5 %.
+;;     (setq judge-indent-relative-tolerance 3)
 ;;
-;; Set search limit for large size files
-;;   (setq judge-indent-search-limit 60000)
-;; Default: 30000 chars (equal to ca. 1000 lines)
+;; Set search limit for large size files.
+;; Default: 30000 chars (equal to ca. 1000 lines).
+;;     (setq judge-indent-search-limit 60000)
 
 ;;; Functions:
 
