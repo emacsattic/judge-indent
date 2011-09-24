@@ -1,6 +1,6 @@
 # judge-indent.el
 `judge-indent-mode' は、ファイルを開いた瞬間、
-以下の 8 (厳密には 7) パターンの中から
+以下の 9 (厳密には 7) パターンの中から
 インデント幅およびタブ幅を自動的に判定します。
 既存のインデントスタイルを乱さずに、
 他人・チームのコードに手を入れることが可能となります。
@@ -8,9 +8,10 @@
       \  indent
        \  2 4 8
     tab \------
-      4 | o c -
-      8 | o o c <- インデント幅＝タブ幅のときはそれ以上の判定を行わない。
-    nil | o o o
+      2 | U - -
+      4 | X U -
+      8 | X X U <- インデント幅＝タブ幅のときはそれ以上の判定を行わない。
+    nil | X X X
 
 # 使い方
 以下の 3 行を emacs の設定ファイルに追加してください。
@@ -25,9 +26,8 @@
 
     (setq judge-indent-default-indent-width 2)
 
-デフォルトのタブ幅 (4 か 8) を設定する。
+デフォルトのタブ幅 (2 か 4 か 8) を設定する。
 デフォルト: `tab-width' のデフォルト値、もしくは 8。
-
 
     (setq judge-indent-default-tab-width 4)
 
@@ -58,7 +58,7 @@
 
 * judge-indent-set-indent-tab-widths
 * judge-indent-set-indent-width{2, 4, 8}-disable-tab
-* judge-indent-set-indent-width{2, 4, 8}-tab-width{2, 8}
+* judge-indent-set-indent-width{2, 4, 8}-tab-width{2, 4, 8}
 
 インデント幅およびタブ幅を手動で設定する。
 
@@ -69,7 +69,7 @@
 
 * judge-indent-set-tab-width
 * judge-indent-disable-tab
-* judge-indent-set-tab-width{4, 8}
+* judge-indent-set-tab-width{2, 4, 8}
 
 タブ幅を手動で設定する。
 

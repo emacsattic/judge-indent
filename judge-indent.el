@@ -21,16 +21,17 @@
 
 ;;; Commentary:
 
-;; The `judge-indent-mode' judges, soon after finding file,
-;; indent and tab widths from following 8 (strictly 7) patterns.
-;; Then, you can add your code without breaking existing indent style.
+;; The `judge-indent-mode' distinguish, soon after finding file,
+;; indent and tab widths into following 9 (strictly 7) patterns.
+;; You can easily write your own code without breaking existing indent style.
 ;;
 ;;       \  indent
 ;;        \  2 4 8
 ;;     tab \------
-;;       4 | o c -
-;;       8 | o o c <- It can not distinguish when indent width equals to tab width.
-;;     nil | o o o
+;;       2 | U - -
+;;       4 | X U -
+;;       8 | X X U <- It cannot distinguish between `U's.
+;;     nil | X X X
 
 ;;; Usage:
 
@@ -45,7 +46,7 @@
 ;; Default: default value of `c-basic-offset' or 4.
 ;;     (setq judge-indent-default-indent-width 2)
 ;;
-;; Set default tab width (4 or 8).
+;; Set default tab width (2, 4 or 8).
 ;; Default: default value of `tab-width' or 8.
 ;;     (setq judge-indent-default-tab-width 4)
 ;;
@@ -68,12 +69,12 @@
 ;; * judge-indent-region
 ;; * judge-indent-set-indent-tab-widths
 ;; * judge-indent-set-indent-width{2, 4, 8}-disable-tab
-;; * judge-indent-set-indent-width{2, 4, 8}-tab-width{2, 8}
+;; * judge-indent-set-indent-width{2, 4, 8}-tab-width{2, 4, 8}
 ;; * judge-indent-set-indent-width
 ;; * judge-indent-set-indent-width{2, 4, 8}
 ;; * judge-indent-set-tab-width
 ;; * judge-indent-disable-tab
-;; * judge-indent-set-tab-width{4, 8}
+;; * judge-indent-set-tab-width{2, 4, 8}
 ;; * judge-indent-message-indent-counts-buffer
 ;; * judge-indent-message-indent-counts-region
 
@@ -158,14 +159,28 @@
     (setq standard-indent                   indent))
   (when (boundp 'c-indent-level)
     (setq c-indent-level                    indent))
-  (when (boundp 'python-indent)
-    (setq python-indent                     indent))
   (when (boundp 'perl-indent-level)
     (setq perl-indent-level                 indent))
   (when (boundp 'cperl-indent-level)
     (setq cperl-indent-level                indent))
+  (when (boundp 'python-indent)
+    (setq python-indent                     indent))
   (when (boundp 'ruby-indent-level)
     (setq ruby-indent-level                 indent))
+  (when (boundp 'sh-basic-offset)
+    (setq sh-basic-offset                   indent))
+  (when (boundp 'awk-indent-level)
+    (setq awk-indent-level                  indent))
+  (when (boundp 'lua-indent-level)
+    (setq lua-indent-level                  indent))
+  (when (boundp 'pascal-indent-level)
+    (setq pascal-indent-level               indent))
+  (when (boundp 'delphi-indent-level)
+    (setq delphi-indent-level               indent))
+  (when (boundp 'erlang-indent-level)
+    (setq erlang-indent-level               indent))
+  (when (boundp 'smalltalk-indent-amount)
+    (setq smalltalk-indent-amount           indent))
   (when (boundp 'html-basic-offset)
     (setq html-basic-offset                 indent))
   (when (boundp 'sgml-basic-offset)
@@ -185,9 +200,7 @@
   (when (boundp 'js-indent-level)
     (setq js-indent-level                   indent))
   (when (boundp 'js2-basic-offset)
-    (setq js2-basic-offset                  indent))
-  (when (boundp 'sh-basic-offset)
-    (setq sh-basic-offset                   indent)))
+    (setq js2-basic-offset                  indent)))
 
 (defun judge-indent-set-indent-width (indent)
   "Set indent width"
@@ -239,6 +252,11 @@
   (interactive)
   (judge-indent-set-tab-width 0))
 
+(defun judge-indent-set-tab-width2 ()
+  "Set tab width to 2"
+  (interactive)
+  (judge-indent-set-tab-width 2))
+
 (defun judge-indent-set-tab-width4 ()
   "Set tab width to 4"
   (interactive)
@@ -276,6 +294,11 @@
   "Set indent width to 8 and disable tab"
   (interactive)
   (judge-indent-set-indent-tab-widths 8 0))
+
+(defun judge-indent-set-indent-width2-tab-width2 ()
+  "Set indent width to 2 and tab width to 2"
+  (interactive)
+  (judge-indent-set-indent-tab-widths 2 2))
 
 (defun judge-indent-set-indent-width2-tab-width4 ()
   "Set indent width to 2 and tab width to 4"
