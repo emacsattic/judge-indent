@@ -56,22 +56,22 @@
 
 バッファ／リージョンからインデント幅およびタブ幅を判定する。
 
-* judge-indent-set-indent-tab-widths
-* judge-indent-set-indent-width{2, 4, 8}-disable-tab
-* judge-indent-set-indent-width{2, 4, 8}-tab-width{2, 4, 8}
+* judge-indent-{set,set-apply}-indent-tab-widths
+* judge-indent-{set,set-apply}-indent-width{2,4,8}-disabled-tab
+* judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-width{2,4,8}
 
-インデント幅およびタブ幅を手動で設定する。
+インデント幅およびタブ幅を手動で設定 (＋整形) する。
 
-* judge-indent-set-indent-width
-* judge-indent-set-indent-width{2, 4, 8}
+* judge-indent-{set,set-apply}-indent-width
+* judge-indent-{set,set-apply}-indent-width{2,4,8}
 
-インデント幅を手動で設定する。
+インデント幅を手動で設定 (＋整形) する。
 
-* judge-indent-set-tab-width
-* judge-indent-disable-tab
-* judge-indent-set-tab-width{2, 4, 8}
+* judge-indent-{set,set-apply}-tab-width
+* judge-indent-{set,set-apply}-disabled-tab
+* judge-indent-{set,set-apply}-tab-width{2,4,8}
 
-タブ幅を手動で設定する。
+タブ幅を手動で設定 (＋整形) する。
 
 * judge-indent-message-indent-counts-buffer
 * judge-indent-message-indent-counts-region
