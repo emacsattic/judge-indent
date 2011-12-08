@@ -68,12 +68,12 @@
 ;; * judge-indent-buffer
 ;; * judge-indent-region
 ;; * judge-indent-{set,set-apply}-indent-tab-widths
-;; * judge-indent-{set,set-apply}-indent-width{2,4,8}-disabled-tab
+;; * judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-disabled
 ;; * judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-width{2,4,8}
 ;; * judge-indent-{set,set-apply}-indent-width
 ;; * judge-indent-{set,set-apply}-indent-width{2,4,8}
 ;; * judge-indent-{set,set-apply}-tab-width
-;; * judge-indent-{set,set-apply}-disabled-tab
+;; * judge-indent-{set,set-apply}-tab-disabled
 ;; * judge-indent-{set,set-apply}-tab-width{2,4,8}
 ;; * judge-indent-message-indent-counts-buffer
 ;; * judge-indent-message-indent-counts-region
@@ -141,8 +141,11 @@
 (defun judge-indent-set-minor-mode-lighter (indent tab)
   "Set minor mode lighter"
   (setq judge-indent-minor-mode-lighter
-        (concat " JI:" (number-to-string indent)
-                "[" (if (= tab 0) "-" (number-to-string tab)) "]"))
+        (concat " JI:"
+                (number-to-string indent)
+                "["
+                (if (= tab 0) "-" (number-to-string tab))
+                "]"))
   (setcar (cdr (assq 'judge-indent-mode minor-mode-alist))
           'judge-indent-minor-mode-lighter))
 
@@ -206,7 +209,8 @@
   "Set indent width"
   (interactive "nIndent width: ")
   (message (concat "Set indent width to "
-                   (number-to-string indent) "..."))
+                   (number-to-string indent)
+                   "..."))
   (judge-indent-set-minor-mode-lighter indent judge-indent-tab-width)
   (judge-indent-set-indent-width-without-message indent))
 
@@ -242,18 +246,19 @@
 (defun judge-indent-set-tab-width (tab)
   "Set tab width"
   (interactive "nTab width: ")
-  (message (concat (if (= tab 0) "Disable tab"
-                     (concat "Set tab width to " (number-to-string tab)))
+  (message (concat "Set tab "
+                   (if (= tab 0) "disabled"
+                     (concat "width to " (number-to-string tab)))
                    "..."))
   (judge-indent-set-minor-mode-lighter judge-indent-indent-width tab)
   (judge-indent-set-tab-width-without-message tab))
 
-(defun judge-indent-set-disabled-tab ()
-  "Disable tab"
+(defun judge-indent-set-tab-disabled ()
+  "Set tab disabled"
   (interactive)
   (judge-indent-set-tab-width 0))
 
-(defalias 'judge-indent-disable-tab 'judge-indent-set-disabled-tab)
+(defalias 'judge-indent-disable-tab 'judge-indent-set-tab-disabled)
 
 (defun judge-indent-set-tab-width2 ()
   "Set tab width to 2"
@@ -275,37 +280,39 @@
 (defun judge-indent-set-indent-tab-widths (indent tab)
   "Set indent and tab widths"
   (interactive "nIndent Width: \nnTab width: ")
-  (message (concat "Set indent width to " (number-to-string indent)
-                   (if (= tab 0) " and disable tab"
-                     (concat " and tab width to " (number-to-string tab)))
+  (message (concat "Set indent width to "
+                   (number-to-string indent)
+                   " and tab "
+                   (if (= tab 0) "disabled"
+                     (concat "width to " (number-to-string tab)))
                    "..."))
   (judge-indent-set-minor-mode-lighter indent tab)
   (judge-indent-set-indent-width-without-message indent)
   (judge-indent-set-tab-width-without-message    tab))
 
-(defun judge-indent-set-indent-width2-disabled-tab ()
-  "Set indent width to 2 and disable tab"
+(defun judge-indent-set-indent-width2-tab-disabled ()
+  "Set indent width to 2 and tab disabled"
   (interactive)
   (judge-indent-set-indent-tab-widths 2 0))
 
 (defalias 'judge-indent-set-indent-width2-disable-tab
-  'judge-indent-set-indent-width2-disabled-tab)
+  'judge-indent-set-indent-width2-tab-disabled)
 
-(defun judge-indent-set-indent-width4-disabled-tab ()
-  "Set indent width to 4 and disable tab"
+(defun judge-indent-set-indent-width4-tab-disabled ()
+  "Set indent width to 4 and tab disabled"
   (interactive)
   (judge-indent-set-indent-tab-widths 4 0))
 
 (defalias 'judge-indent-set-indent-width4-disable-tab
-  'judge-indent-set-indent-width4-disabled-tab)
+  'judge-indent-set-indent-width4-tab-disabled)
 
-(defun judge-indent-set-indent-width8-disabled-tab ()
-  "Set indent width to 8 and disable tab"
+(defun judge-indent-set-indent-width8-tab-disabled ()
+  "Set indent width to 8 and tab disabled"
   (interactive)
   (judge-indent-set-indent-tab-widths 8 0))
 
 (defalias 'judge-indent-set-indent-width8-disable-tab
-  'judge-indent-set-indent-width8-disabled-tab)
+  'judge-indent-set-indent-width8-tab-disabled)
 
 (defun judge-indent-set-indent-width2-tab-width2 ()
   "Set indent width to 2 and tab width to 2"
@@ -347,7 +354,8 @@
   "Set and apply indent width"
   (interactive "nIndent width: ")
   (message (concat "Set and apply indent width to "
-                   (number-to-string indent) "..."))
+                   (number-to-string indent)
+                   "..."))
   (judge-indent-set-indent-width indent)
   (judge-indent-apply-indent-width indent))
 
@@ -376,12 +384,17 @@
 (defun judge-indent-set-apply-tab-width (tab)
   "Set and apply tab width"
   (interactive "nTab width: ")
-  (message (concat (if (= tab 0) "Disable tab and apply"
-                     (concat "Set and apply tab width to "
-                             (number-to-string tab)))
+  (message (concat "Set and apply tab "
+                   (if (= tab 0) "disabled"
+                     (concat "width to " (number-to-string tab)))
                    "..."))
   (judge-indent-set-tab-width tab)
   (judge-indent-apply-tab-width tab))
+
+(defun judge-indent-set-apply-tab-disabled ()
+  "Set and apply tab disabled"
+  (interactive)
+  (judge-indent-set-apply-tab-width 0))
 
 (defun judge-indent-set-apply-tab-width2 ()
   "Set and apply tab width to 2"
@@ -403,37 +416,39 @@
 (defun judge-indent-set-apply-indent-tab-widths (indent tab)
   "Set and apply indent and tab widths"
   (interactive "nIndent Width: \nnTab width: ")
-  (message (concat "Set and apply indent width to " (number-to-string indent)
-                   (if (= tab 0) " and disable tab and apply"
-                     (concat " and tab width to " (number-to-string tab)))
+  (message (concat "Set and apply indent width to "
+                   (number-to-string indent)
+                   " and tab "
+                   (if (= tab 0) "disabled"
+                     (concat "width to " (number-to-string tab)))
                    "..."))
   (judge-indent-set-indent-tab-widths indent tab)
   (judge-indent-apply-indent-width indent)
   (judge-indent-apply-tab-width tab))
 
-(defun judge-indent-set-apply-indent-width2-disabled-tab ()
-  "Set and apply indent width to 2 and disable tab"
+(defun judge-indent-set-apply-indent-width2-tab-disabled ()
+  "Set and apply indent width to 2 and tab disabled"
   (interactive)
   (judge-indent-set-apply-indent-tab-widths 2 0))
 
 (defalias 'judge-indent-set-apply-indent-width2-disable-tab
-  'judge-indent-set-apply-indent-width2-disabled-tab)
+  'judge-indent-set-apply-indent-width2-tab-disabled)
 
-(defun judge-indent-set-apply-indent-width4-disabled-tab ()
-  "Set and apply indent width to 4 and disable tab"
+(defun judge-indent-set-apply-indent-width4-tab-disabled ()
+  "Set and apply indent width to 4 and tab disabled"
   (interactive)
   (judge-indent-set-apply-indent-tab-widths 4 0))
 
 (defalias 'judge-indent-set-apply-indent-width4-disable-tab
-  'judge-indent-set-apply-indent-width4-disabled-tab)
+  'judge-indent-set-apply-indent-width4-tab-disabled)
 
-(defun judge-indent-set-apply-indent-width8-disabled-tab ()
-  "Set and apply indent width to 8 and disable tab"
+(defun judge-indent-set-apply-indent-width8-tab-disabled ()
+  "Set and apply indent width to 8 and tab disabled"
   (interactive)
   (judge-indent-set-apply-indent-tab-widths 8 0))
 
 (defalias 'judge-indent-set-apply-indent-width8-disable-tab
-  'judge-indent-set-apply-indent-width8-disabled-tab)
+  'judge-indent-set-apply-indent-width8-tab-disabled)
 
 (defun judge-indent-set-apply-indent-width2-tab-width2 ()
   "Set and apply indent width to 2 and tab width to 2"

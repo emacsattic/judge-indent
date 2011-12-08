@@ -1,4 +1,5 @@
-# judge-indent.el
+# judge-indent.el --- judge indent and tab widths
+
 `judge-indent-mode' は、ファイルを開いた瞬間、
 以下の 9 (厳密には 7) パターンの中から
 インデント幅およびタブ幅を自動的に判定します。
@@ -14,6 +15,7 @@
     nil | X X X
 
 # 使い方
+
 以下の 3 行を emacs の設定ファイルに追加してください。
 
     (require 'judge-indent)
@@ -21,6 +23,7 @@
     (setq judge-indent-major-modes '(c-mode python-mode sh-mode))
 
 # カスタマイズ
+
 デフォルトのインデント幅 (2 か 4 か 8) を設定する。
 デフォルト: `c-basic-offset' のデフォルト値、もしくは 4。
 
@@ -47,38 +50,40 @@
     (setq judge-indent-search-limit 60000)
 
 # 関数
-* judge-indent-mode
 
 マイナーモードをオン／オフにする。
+
+* judge-indent-mode
+
+バッファ／リージョンからインデント幅およびタブ幅を判定する。
 
 * judge-indent-buffer
 * judge-indent-region
 
-バッファ／リージョンからインデント幅およびタブ幅を判定する。
+インデント幅およびタブ幅を手動で設定 (および、整形) する。
 
 * judge-indent-{set,set-apply}-indent-tab-widths
-* judge-indent-{set,set-apply}-indent-width{2,4,8}-disabled-tab
+* judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-disabled
 * judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-width{2,4,8}
 
-インデント幅およびタブ幅を手動で設定 (＋整形) する。
+インデント幅を手動で設定 (および、整形) する。
 
 * judge-indent-{set,set-apply}-indent-width
 * judge-indent-{set,set-apply}-indent-width{2,4,8}
 
-インデント幅を手動で設定 (＋整形) する。
+タブ幅を手動で設定 (および、整形) する。
 
 * judge-indent-{set,set-apply}-tab-width
-* judge-indent-{set,set-apply}-disabled-tab
+* judge-indent-{set,set-apply}-tab-disabled
 * judge-indent-{set,set-apply}-tab-width{2,4,8}
 
-タブ幅を手動で設定 (＋整形) する。
+バッファ／リージョン内のインデントをカウントして表示する。
 
 * judge-indent-message-indent-counts-buffer
 * judge-indent-message-indent-counts-region
 
-バッファ／リージョン内のインデントをカウントして表示する。
-
 # バージョン
+
 ## 1.1.0 on 2 July 2011
 
 精度向上。リージョンに関する関数。リファクタリング。
