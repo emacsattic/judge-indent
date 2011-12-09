@@ -68,10 +68,13 @@
 ;; * judge-indent-buffer
 ;; * judge-indent-region
 ;; * judge-indent-{set,set-apply}-indent-tab-widths
+;; * judge-indent-{set,set-apply}-default-indent-tab-widths
 ;; * judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-{disabled,width{2,4,8}}
 ;; * judge-indent-{set,set-apply}-indent-width
+;; * judge-indent-{set,set-apply}-default-indent-width
 ;; * judge-indent-{set,set-apply}-indent-width{2,4,8}
 ;; * judge-indent-{set,set-apply}-tab-width
+;; * judge-indent-{set,set-apply}-default-tab-width
 ;; * judge-indent-{set,set-apply}-tab-{disabled,width{2,4,8}}
 ;; * judge-indent-message-indent-counts-buffer
 ;; * judge-indent-message-indent-counts-region
@@ -212,6 +215,11 @@
   (judge-indent-set-minor-mode-lighter indent judge-indent-tab-width)
   (judge-indent-set-indent-width-without-message indent))
 
+(defun judge-indent-set-default-indent-width ()
+  "Set default indent width"
+  (interactive)
+  (judge-indent-set-indent-width judge-indent-default-indent-width))
+
 (defun judge-indent-set-indent-width2 ()
   "Set indent width to 2"
   (interactive)
@@ -255,6 +263,11 @@
   (judge-indent-set-minor-mode-lighter judge-indent-indent-width tab)
   (judge-indent-set-tab-width-without-message tab))
 
+(defun judge-indent-set-default-tab-width ()
+  "Set default tab width"
+  (interactive)
+  (judge-indent-set-tab-width judge-indent-default-tab-width))
+
 (defun judge-indent-set-tab-disabled ()
   "Set tab disabled"
   (interactive)
@@ -291,6 +304,12 @@
   (judge-indent-set-minor-mode-lighter indent tab)
   (judge-indent-set-indent-width-without-message indent)
   (judge-indent-set-tab-width-without-message    tab))
+
+(defun judge-indent-set-default-indent-tab-widths ()
+  "Set default indent and tab widths"
+  (interactive)
+  (judge-indent-set-indent-tab-widths judge-indent-default-indent-width
+                                      judge-indent-default-tab-width))
 
 (defun judge-indent-set-indent-width2-tab-disabled ()
   "Set indent width to 2 and tab disabled"
@@ -361,6 +380,11 @@
   (judge-indent-set-indent-width indent)
   (judge-indent-apply-indent-width indent))
 
+(defun judge-indent-set-apply-default-indent-width ()
+  "Set and apply default indent width"
+  (interactive)
+  (judge-indent-set-apply-indent-width judge-indent-default-indent-width))
+
 (defun judge-indent-set-apply-indent-width2 ()
   "Set and apply indent width to 2"
   (interactive)
@@ -392,6 +416,11 @@
                    "..."))
   (judge-indent-set-tab-width tab)
   (judge-indent-apply-tab-width tab))
+
+(defun judge-indent-set-apply-default-tab-width ()
+  "Set and apply default tab width"
+  (interactive)
+  (judge-indent-set-apply-tab-width judge-indent-default-tab-width))
 
 (defun judge-indent-set-apply-tab-disabled ()
   "Set and apply tab disabled"
@@ -427,6 +456,12 @@
   (judge-indent-set-indent-tab-widths indent tab)
   (judge-indent-apply-indent-width indent)
   (judge-indent-apply-tab-width tab))
+
+(defun judge-indent-set-apply-default-indent-tab-widths ()
+  "Set and apply default indent and tab widths"
+  (interactive)
+  (judge-indent-set-apply-indent-tab-widths judge-indent-default-indent-width
+                                            judge-indent-default-tab-width))
 
 (defun judge-indent-set-apply-indent-width2-tab-disabled ()
   "Set and apply indent width to 2 and tab disabled"

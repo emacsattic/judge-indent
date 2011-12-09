@@ -64,16 +64,19 @@
 インデント幅およびタブ幅を手動で設定 (かつ、既存コードを整形) する。
 
 * judge-indent-{set,set-apply}-indent-tab-widths
+* judge-indent-{set,set-apply}-default-indent-tab-widths
 * judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-{disabled,width{2,4,8}}
 
 インデント幅を手動で設定 (かつ、既存コードを整形) する。
 
 * judge-indent-{set,set-apply}-indent-width
+* judge-indent-{set,set-apply}-default-indent-width
 * judge-indent-{set,set-apply}-indent-width{2,4,8}
 
 タブ幅を手動で設定 (かつ、既存コードを整形) する。
 
 * judge-indent-{set,set-apply}-tab-width
+* judge-indent-{set,set-apply}-default-tab-width
 * judge-indent-{set,set-apply}-tab-{disabled,width{2,4,8}}
 
 バッファ／リージョン内のインデントをカウントして表示する。
