@@ -1,9 +1,9 @@
 # judge-indent.el --- judge indent and tab widths
 
 `judge-indent-mode' は、ファイルを開いた瞬間、
-以下の 9 (厳密には 7) パターンの中から
-インデント幅およびタブ幅を自動的に判定します。
-既存のインデントスタイルを乱さずに、
+以下の 9 (厳密には 7) パターンの中からインデント幅およびタブ幅を自動的に判定します。
+そして、そのインデントスタイルに合うように Emacs の挙動を変化させます。
+これによって、既存のインデントスタイルを乱さずに、
 他人・チームのコードに手を入れることが可能となります。
 
       \  indent
@@ -11,12 +11,13 @@
     tab \------
       2 | U - -
       4 | X U -
-      8 | X X U <- インデント幅＝タブ幅のときはそれ以上の判定を行わない。
+      8 | X X U <- インデント幅＝タブ幅のときはデフォルトのタブ幅に設定する。
     nil | X X X
 
 # 使い方
 
-以下の 3 行を emacs の設定ファイルに追加してください。
+以下の 3 行を Emacs の設定ファイルに追加してください。
+`c-mode`、`python-mode`、`sh-mode` で使用する例です。
 
     (require 'judge-indent)
     (global-judge-indent-mode t)
@@ -34,7 +35,7 @@
 
     (setq judge-indent-default-tab-width 4)
 
-インデントがあまり深くないときにタブを好むかどうかのフラグを設定する。
+既存コードのインデントがあまり深くないときにタブを好むかどうかのフラグを設定する。
 デフォルト: `indent-tabs-width' のデフォルト値、もしくは nil。
 
     (setq judge-indent-prefer-tabs-mode t)
@@ -44,7 +45,7 @@
 
     (setq judge-indent-relative-tolerance 3)
 
-大きいサイズのファイルに対して検索リミットを設定する。
+大きいサイズのファイルに対して、判定に用いる文字数を設定する。
 デフォルト: 30000 文字 (＝約 1000 行)。
 
     (setq judge-indent-search-limit 60000)
@@ -60,22 +61,20 @@
 * judge-indent-buffer
 * judge-indent-region
 
-インデント幅およびタブ幅を手動で設定 (および、整形) する。
+インデント幅およびタブ幅を手動で設定 (かつ、既存コードを整形) する。
 
 * judge-indent-{set,set-apply}-indent-tab-widths
-* judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-disabled
-* judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-width{2,4,8}
+* judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-{disabled,width{2,4,8}}
 
-インデント幅を手動で設定 (および、整形) する。
+インデント幅を手動で設定 (かつ、既存コードを整形) する。
 
 * judge-indent-{set,set-apply}-indent-width
 * judge-indent-{set,set-apply}-indent-width{2,4,8}
 
-タブ幅を手動で設定 (および、整形) する。
+タブ幅を手動で設定 (かつ、既存コードを整形) する。
 
 * judge-indent-{set,set-apply}-tab-width
-* judge-indent-{set,set-apply}-tab-disabled
-* judge-indent-{set,set-apply}-tab-width{2,4,8}
+* judge-indent-{set,set-apply}-tab-{disabled,width{2,4,8}}
 
 バッファ／リージョン内のインデントをカウントして表示する。
 

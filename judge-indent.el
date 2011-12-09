@@ -68,13 +68,11 @@
 ;; * judge-indent-buffer
 ;; * judge-indent-region
 ;; * judge-indent-{set,set-apply}-indent-tab-widths
-;; * judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-disabled
-;; * judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-width{2,4,8}
+;; * judge-indent-{set,set-apply}-indent-width{2,4,8}-tab-{disabled,width{2,4,8}}
 ;; * judge-indent-{set,set-apply}-indent-width
 ;; * judge-indent-{set,set-apply}-indent-width{2,4,8}
 ;; * judge-indent-{set,set-apply}-tab-width
-;; * judge-indent-{set,set-apply}-tab-disabled
-;; * judge-indent-{set,set-apply}-tab-width{2,4,8}
+;; * judge-indent-{set,set-apply}-tab-{disabled,width{2,4,8}}
 ;; * judge-indent-message-indent-counts-buffer
 ;; * judge-indent-message-indent-counts-region
 
@@ -235,13 +233,17 @@
   "Set tab width without message"
   (setq judge-indent-tab-width tab)
   (if (= tab 0)
-      (setq indent-tabs-mode nil)
+      (progn
+        (setq indent-tabs-mode nil)
+        (setq tab-width judge-indent-default-tab-width))
     (setq indent-tabs-mode t)
-    (setq tab-width tab)
-    (setq tab-stop-list
-          '((* tab  1) (* tab  2) (* tab  3) (* tab  4) (* tab  5)
-            (* tab  6) (* tab  7) (* tab  8) (* tab  9) (* tab 10)
-            (* tab 11) (* tab 12) (* tab 13) (* tab 14) (* tab 15)))))
+    (setq tab-width tab))
+  (setq tab-stop-list
+        '((* tab-width  1) (* tab-width  2) (* tab-width  3)
+          (* tab-width  4) (* tab-width  5) (* tab-width  6)
+          (* tab-width  7) (* tab-width  8) (* tab-width  9)
+          (* tab-width 10) (* tab-width 11) (* tab-width 12)
+          (* tab-width 13) (* tab-width 14) (* tab-width 15))))
 
 (defun judge-indent-set-tab-width (tab)
   "Set tab width"
