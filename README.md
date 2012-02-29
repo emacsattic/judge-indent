@@ -50,6 +50,10 @@
 
     (setq judge-indent-search-limit 60000)
 
+インデント幅を保持する変数を追加設定する。
+
+    (add-to-list 'judge-indent-variables-indent-width 'c-basic-offset)
+
 # 関数
 
 マイナーモードをオン／オフにする。
@@ -85,6 +89,10 @@
 * judge-indent-message-indent-counts-region
 
 # バージョン
+
+## 1.1.1 on 29 Feb. 2012
+
+既存コードを整形する関数。インデント幅を保持する変数の追加設定。リファクタリング。
 
 ## 1.1.0 on 2 July 2011
 
