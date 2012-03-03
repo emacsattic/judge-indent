@@ -35,7 +35,7 @@
 
 ;;; Usage:
 
-;; Add following 3 lines into your emacs init file.
+;; Add following 3 lines into your init file.
 ;;
 ;;     (require 'judge-indent)
 ;;     (global-judge-indent-mode t)
@@ -54,7 +54,7 @@
 ;;     (setq judge-indent-default-tab-width 4)
 ;;
 ;; Set flag of preferring tab or not when indent is not so deep.
-;; Default: default value of `indent-tabs-mode' or nil.
+;; Default: default value of `indent-tabs-mode' or `nil'.
 ;;
 ;;     (setq judge-indent-prefer-tabs-mode t)
 ;;
@@ -100,7 +100,7 @@
 
 (defcustom judge-indent-major-modes '()
   "Major modes of applying judge-indent-mode"
-  :type  '(list symbol)
+  :type  '(repeat symbol)
   :group 'judge-indent)
 
 (defcustom judge-indent-default-indent-width
@@ -158,7 +158,7 @@
     js-indent-level
     js2-basic-offset)
   "Variables of indent width"
-  :type  '(list symbol)
+  :type  '(repeat symbol)
   :group 'judge-indent)
 
 (defvar judge-indent-indent-width judge-indent-default-indent-width
