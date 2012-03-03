@@ -1,6 +1,6 @@
 # judge-indent.el --- judge indent and tab widths
 
-`judge-indent-mode' は、ファイルを開いた瞬間、
+`judge-indent-mode` は、ファイルを開いた瞬間、
 以下の 9 (厳密には 7) パターンの中からインデント幅およびタブ幅を自動的に判定します。
 そして、そのインデントスタイルに合うように Emacs の挙動を変化させます。
 これによって、既存のインデントスタイルを乱さずに、
@@ -16,7 +16,7 @@
 
 # 使い方
 
-以下の 3 行を Emacs の設定ファイルに追加してください。
+以下の 3 行を設定ファイルに追加してください。
 `c-mode`、`python-mode`、`sh-mode` で使用する例です。
 
     (require 'judge-indent)
@@ -26,17 +26,17 @@
 # カスタマイズ
 
 デフォルトのインデント幅 (2 か 4 か 8) を設定する。
-デフォルト: `c-basic-offset' のデフォルト値、もしくは 4。
+デフォルト: `c-basic-offset` のデフォルト値、もしくは 4。
 
     (setq judge-indent-default-indent-width 2)
 
 デフォルトのタブ幅 (2 か 4 か 8) を設定する。
-デフォルト: `tab-width' のデフォルト値、もしくは 8。
+デフォルト: `tab-width` のデフォルト値、もしくは 8。
 
     (setq judge-indent-default-tab-width 4)
 
 既存コードのインデントがあまり深くないときにタブを好むかどうかのフラグを設定する。
-デフォルト: `indent-tabs-width' のデフォルト値、もしくは nil。
+デフォルト: `indent-tabs-width` のデフォルト値、もしくは `nil`。
 
     (setq judge-indent-prefer-tabs-mode t)
 
