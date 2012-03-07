@@ -21,17 +21,22 @@
 
 ;;; Commentary:
 
-;; The `judge-indent-mode' distinguish, soon after finding file,
-;; indent and tab widths into following 9 (strictly 7) patterns.
-;; You can easily write your own code without breaking existing indent style.
+;; The `judge-indent-mode' detects, soon after finding a file,
+;; indent and tab widths as one of the following 9 (strictly 7) patterns.
 ;;
 ;;       \  indent
 ;;        \  2 4 8
 ;;     tab \------
-;;       2 | U - -
-;;       4 | X U -
-;;       8 | X X U <- It cannot distinguish between `U's.
-;;     nil | X X X
+;;       2 | U
+;;       4 | X U
+;;       8 | X X U <- It cannot distinguish between three `U's.
+;;       - | X X X
+;;
+;; The detection method is counting 2-space, 4-space, 8-space and 1-tab
+;; at the beginning of every line and comparing among them.  The behavior
+;; of your Emacs is then switched to go along with the detected indent style.
+;; You can easily write your own code into another person's or your team's
+;; code without breaking the existing indent style.
 
 ;;; Usage:
 
@@ -59,7 +64,7 @@
 ;;     (setq judge-indent-prefer-tabs-mode t)
 ;;
 ;; Set relative tolerance [%] for judging indent and tab widths.
-;; Default: 5 %.
+;; Default: 0 %.
 ;;
 ;;     (setq judge-indent-relative-tolerance 3)
 ;;
@@ -121,7 +126,7 @@
   :type  'boolean
   :group 'judge-indent)
 
-(defcustom judge-indent-relative-tolerance 5
+(defcustom judge-indent-relative-tolerance 0
   "Relative tolerance [%] for judging indent and tab widths"
   :type  'number
   :group 'judge-indent)
