@@ -652,12 +652,10 @@
   :group   'judge-indent
   (if judge-indent-mode
       (progn
-        (setq local-enable-local-variables nil)
         (make-local-variable 'judge-indent-minor-indent-width)
         (make-local-variable 'judge-indent-minor-tab-width)
         (make-local-variable 'judge-indent-minor-mode-lighter)
         (judge-indent-buffer))
-    (setq local-enable-local-variables t)
     (kill-local-variable 'judge-indent-minor-indent-width)
     (kill-local-variable 'judge-indent-minor-tab-width)
     (kill-local-variable 'judge-indent-minor-mode-lighter)))
