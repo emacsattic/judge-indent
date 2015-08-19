@@ -1,10 +1,10 @@
 ;;; judge-indent.el --- judge indent and tab widths
 
-;;; Copyright (C) 2011-2014 yascentur
+;;; Copyright (C) 2011-2015 yascentur
 
 ;; Author:   yascentur <screenname at gmail dot com>
 ;; Keywords: indent tab
-;; Version:  1.1.2
+;; Version:  1.1.3b
 
 ;; This program is free software; you can redistribute it and/or modify
 ;; it under the terms of the GNU General Public License as published by
@@ -109,7 +109,9 @@
   :group 'judge-indent)
 
 (defcustom judge-indent-default-indent-width
-  (if (default-boundp 'c-basic-offset) (default-value 'c-basic-offset) 4)
+  (if (and (default-boundp 'c-basic-offset)
+           (numberp (default-value 'c-basic-offset)))
+      (default-value 'c-basic-offset) 4)
   "Default indent width (2, 4 or 8)"
   :type  'number
   :group 'judge-indent)
