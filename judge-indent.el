@@ -650,6 +650,7 @@
 
 ;; minor mode
 
+;;;###autoload
 (define-minor-mode judge-indent-mode
   "Judge indent mode"
   :lighter " JI"
@@ -664,6 +665,7 @@
     (kill-local-variable 'judge-indent-minor-tab-width)
     (kill-local-variable 'judge-indent-minor-mode-lighter)))
 
+;;;###autoload
 (define-global-minor-mode global-judge-indent-mode
   judge-indent-mode
   (lambda ()
