@@ -1,6 +1,6 @@
 ;;; judge-indent.el --- judge indent and tab widths
 
-;;; Copyright (C) 2011-2015 yascentur
+;;; Copyright (C) 2011-2016 yascentur
 
 ;; Author:   yascentur <screenname at gmail dot com>
 ;; Keywords: indent tab
@@ -21,22 +21,24 @@
 
 ;;; Commentary:
 
-;; The `judge-indent-mode' detects, soon after finding a file,
-;; indent and tab widths as one of the following 9 (strictly 7) patterns.
+;; Soon after finding a file, the `judge-indent-mode' detects indent style
+;; of the file and then it changes the behavior of your Emacs to follow
+;; the detected indent style.  It makes it possible to write your own code
+;; into another person's or your team's program without breaking the existing
+;; indent style.
 ;;
-;;       \  indent
+;; The detection method is described as follows.  First, 2-spaces, 4-spaces,
+;; 8-spaces and tabs at the beginning of every line are counted.  Second,
+;; the numbers of counted spaces and tabs are compared.  Finally, the indent
+;; style is chosen among the following pairs of indent and tab widths.
+;;
+;;       \  Indent
 ;;        \  2 4 8
-;;     tab \------
+;;     Tab \------
 ;;       2 | U
 ;;       4 | X U
-;;       8 | X X U <- It cannot distinguish between three `U's.
+;;       8 | X X U <- It cannot distinguish three `U's.
 ;;       - | X X X
-;;
-;; The detection method is counting 2-space, 4-space, 8-space and 1-tab
-;; at the beginning of every line and comparing among them.  The behavior
-;; of your Emacs is then switched to go along with the detected indent style.
-;; You can easily write your own code into another person's or your team's
-;; code without breaking the existing indent style.
 
 ;;; Usage:
 
