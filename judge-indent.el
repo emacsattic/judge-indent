@@ -43,7 +43,7 @@
 ;; Add following 3 lines into your init file.
 ;;
 ;;     (require 'judge-indent)
-;;     (global-judge-indent-mode t)
+;;     (global-judge-indent-mode 1)
 ;;     (setq judge-indent-major-modes '(c-mode python-mode sh-mode))
 
 ;;; Customization:
@@ -670,7 +670,7 @@
   judge-indent-mode
   (lambda ()
     (when (memq major-mode judge-indent-major-modes)
-      (judge-indent-mode t))))
+      (judge-indent-mode 1))))
 
 (provide 'judge-indent)
 

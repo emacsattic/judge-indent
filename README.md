@@ -22,7 +22,7 @@
 `c-mode`、`python-mode`、`sh-mode` で使用する例です。
 
     (require 'judge-indent)
-    (global-judge-indent-mode t)
+    (global-judge-indent-mode 1)
     (setq judge-indent-major-modes '(c-mode python-mode sh-mode))
 
 # カスタマイズ
