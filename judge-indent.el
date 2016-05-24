@@ -166,7 +166,10 @@
     cssm-indent-level
     javascript-indent-level
     js-indent-level
-    js2-basic-offset)
+    js2-basic-offset
+    web-mode-markup-indent-offset
+    web-mode-css-indent-offset
+    web-mode-code-indent-offset)
   "Variables of indent width"
   :type  '(repeat symbol)
   :group 'judge-indent)
