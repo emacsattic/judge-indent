@@ -1,4 +1,4 @@
-;;; judge-indent.el --- judge indent and tab widths
+;;; judge-indent.el --- detect indent style (indent and tab widths) and change behavior of Emacs
 
 ;;; Copyright (C) 2011-2016 yascentur
 

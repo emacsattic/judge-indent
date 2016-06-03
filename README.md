@@ -1,4 +1,4 @@
-# judge-indent.el --- judge indent and tab widths
+# judge-indent.el --- detect indent style (indent and tab widths) and change behavior of Emacs
 
 ファイルを開いた直後、`judge-indent-mode` はそのファイルのインデントスタイルを判別し、判別したインデントスタイルに合うように Emacs の挙動を変化させます。
 既存のインデントスタイルを乱さずに他人・チームのプログラムに手を入れることが可能になります。
