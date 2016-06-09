@@ -280,8 +280,6 @@
   (interactive)
   (judge-indent-set-tab-width 0))
 
-(defalias 'judge-indent-disable-tab 'judge-indent-set-tab-disabled)
-
 (defun judge-indent-set-tab-width2 ()
   "Set tab width to 2"
   (interactive)
@@ -323,24 +321,15 @@
   (interactive)
   (judge-indent-set-indent-tab-widths 2 0))
 
-(defalias 'judge-indent-set-indent-width2-disable-tab
-  'judge-indent-set-indent-width2-tab-disabled)
-
 (defun judge-indent-set-indent-width4-tab-disabled ()
   "Set indent width to 4 and tab disabled"
   (interactive)
   (judge-indent-set-indent-tab-widths 4 0))
 
-(defalias 'judge-indent-set-indent-width4-disable-tab
-  'judge-indent-set-indent-width4-tab-disabled)
-
 (defun judge-indent-set-indent-width8-tab-disabled ()
   "Set indent width to 8 and tab disabled"
   (interactive)
   (judge-indent-set-indent-tab-widths 8 0))
-
-(defalias 'judge-indent-set-indent-width8-disable-tab
-  'judge-indent-set-indent-width8-tab-disabled)
 
 (defun judge-indent-set-indent-width2-tab-width2 ()
   "Set indent width to 2 and tab width to 2"
@@ -475,24 +464,15 @@
   (interactive)
   (judge-indent-set-apply-indent-tab-widths 2 0))
 
-(defalias 'judge-indent-set-apply-indent-width2-disable-tab
-  'judge-indent-set-apply-indent-width2-tab-disabled)
-
 (defun judge-indent-set-apply-indent-width4-tab-disabled ()
   "Set and apply indent width to 4 and tab disabled"
   (interactive)
   (judge-indent-set-apply-indent-tab-widths 4 0))
 
-(defalias 'judge-indent-set-apply-indent-width4-disable-tab
-  'judge-indent-set-apply-indent-width4-tab-disabled)
-
 (defun judge-indent-set-apply-indent-width8-tab-disabled ()
   "Set and apply indent width to 8 and tab disabled"
   (interactive)
   (judge-indent-set-apply-indent-tab-widths 8 0))
-
-(defalias 'judge-indent-set-apply-indent-width8-disable-tab
-  'judge-indent-set-apply-indent-width8-tab-disabled)
 
 (defun judge-indent-set-apply-indent-width2-tab-width2 ()
   "Set and apply indent width to 2 and tab width to 2"
